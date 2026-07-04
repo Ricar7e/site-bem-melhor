@@ -52,14 +52,34 @@
 
   /* ── Mobile ── */
   @media (max-width: 760px) {
-    #topo { flex-wrap: nowrap; padding: 8px 8px 8px 16px; gap: 10px; }
+    #topo { flex-wrap: nowrap; padding: 8px 8px 8px 16px; gap: 10px; width: calc(100% - 20px); margin-top: 10px; }
     #topo > nav { display: none; }
     #topo img { height: 34px; }
     #topo .bm-btn-glow { font-size: 13px; padding: 6px 6px 6px 15px; }
+
+    /* Hero — kill the desktop nudge, give room below the bar */
+    .hero-left { transform: none !important; max-width: 100% !important; }
+    .hero-sect { min-height: 0 !important; padding: 128px 22px 68px !important; }
+    .hero-sect h1 { font-size: 40px !important; }
+    .hero-cta { width: 100%; }
+    .hero-cta > button, .hero-cta > a { flex: 1 1 auto; justify-content: center; }
+
+    /* Marquee — smaller, less overlap */
+    .marquee-wrap { margin: -30px 0 -34px !important; height: 96px !important; }
+    .marquee-row { font-size: 15px !important; gap: 22px !important; }
+
+    /* Team — stack photo above text, full width */
+    .team-row { flex-direction: column !important; }
+    .team-row.rev { flex-direction: column-reverse !important; }
+    .team-photo { width: 100% !important; height: 300px !important; flex: none !important; object-position: 50% 20% !important; margin: 0 !important; }
+    .team-text { padding: 30px 26px !important; min-width: 0 !important; }
+    .team-text p { text-align: left !important; }
   }
   @media (max-width: 520px) {
     #topo .bm-btn-glow .bm-btn-label { display: none; }
     #topo .bm-btn-glow { padding: 6px; }
+    .hero-sect h1 { font-size: 34px !important; }
+    .foot-bottom { justify-content: center !important; text-align: center; }
   }
 </style>
 <script src="./image-slot.js"></script>
@@ -81,7 +101,7 @@
   </div>
 
   <!-- ═══════════ HERO ═══════════ -->
-  <section style="position: relative; overflow: hidden; background: #0a1836; min-height: 94vh; display: flex; align-items: center; padding: clamp(132px, 16vh, 188px) clamp(24px, 4vw, 60px) clamp(64px, 9vh, 104px);">
+  <section class="hero-sect" style="position: relative; overflow: hidden; background: #0a1836; min-height: 94vh; display: flex; align-items: center; padding: clamp(160px, 22vh, 240px) clamp(24px, 4vw, 60px) clamp(90px, 13vh, 150px);">
     <div style="position: absolute; inset: 0; z-index: 0;">
       <img src="assets/hero-navio.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: bmCarousel 42s infinite; animation-delay: -28s;">
       <img src="assets/hero-brinde.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: bmCarousel 42s infinite; animation-delay: -7s;">
@@ -95,12 +115,12 @@
     <div style="position: relative; z-index: 2; width: 100%;">
 
       <!-- Left -->
-      <div style="max-width: 780px;">
+      <div class="hero-left" style="max-width: 780px; margin: 0 auto; transform: translateX(-150px);">
         <div style="display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px;"><span style="width: 24px; height: 1.5px; background: var(--gold);"></span> Seguros &amp; Benefícios · SUSEP 262180461</div>
         <h1 style="font-family: var(--serif); font-weight: 500; font-size: clamp(42px, 5.4vw, 74px); line-height: 1.03; letter-spacing: -0.6px; margin: 0; color: #fff;">Transformamos custos em <span style="color: var(--gold-lite); font-style: italic;">benefícios reais</span>.</h1>
         <p style="font-weight: 300; font-size: clamp(16px, 1.7vw, 20px); line-height: 1.55; color: rgba(244,237,224,0.66); margin: 24px 0 32px; max-width: 520px;">Protegemos pessoas, saúde, bens e renda com um acompanhamento que vai muito além da venda — antes, durante e depois.</p>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+        <div class="hero-cta" style="display: flex; flex-wrap: wrap; gap: 14px;">
           <button class="bm-btn-glow" onClick="{{ openModal }}" style="cursor: pointer; font-family: var(--disp); display: inline-flex; align-items: center; gap: 12px; font-weight: 600; font-size: 17px; color: var(--ink); background: var(--goldgrad); border: none; padding: 8px 10px 8px 26px; border-radius: 999px; box-shadow: 0 16px 40px rgba(198,142,106,0.3);" style-hover="filter: brightness(1.05); transform: translateY(-1px);">Vamos conversar <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: var(--gold-lite); font-size: 17px;">↗</span></button>
           <a href="#diferenca" style="display: inline-flex; align-items: center; font-family: var(--disp); font-weight: 600; font-size: 17px; color: #fff; border: 1.5px solid var(--line-d); padding: 15px 28px; border-radius: 999px;" style-hover="border-color: var(--gold); color: var(--gold-lite);">Por onde começamos</a>
         </div>
@@ -109,15 +129,15 @@
   </section>
 
   <!-- ═══════════ MARQUEE ═══════════ -->
-  <div style="position: relative; z-index: 6; margin: -46px 0 -52px; height: 118px; overflow: visible; pointer-events: none;">
+  <div class="marquee-wrap" style="position: relative; z-index: 6; margin: -46px 0 -52px; height: 118px; overflow: visible; pointer-events: none;">
     <div style="position: absolute; top: 22px; left: -8%; width: 116%; transform: rotate(-3deg); background: var(--goldgrad); box-shadow: 0 12px 34px rgba(198,142,106,0.28); overflow: hidden;">
       <div style="display: flex; width: max-content; animation: bmMarqueeL 34s linear infinite; will-change: transform;">
-        <div style="display: flex; align-items: center; gap: 34px; padding: 12px 17px; font-family: var(--disp); font-weight: 600; font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); white-space: nowrap;"><span>Bem Melhor</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Seguros e Benefícios</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Cuidamos de pessoas</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Bem Melhor</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Seguros e Benefícios</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Cuidamos de pessoas</span><span style="color: rgba(10,20,48,0.55);">✦</span></div>
+        <div class="marquee-row" style="display: flex; align-items: center; gap: 34px; padding: 12px 17px; font-family: var(--disp); font-weight: 600; font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); white-space: nowrap;"><span>Bem Melhor</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Seguros e Benefícios</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Cuidamos de pessoas</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Bem Melhor</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Seguros e Benefícios</span><span style="color: rgba(10,20,48,0.55);">✦</span><span>Cuidamos de pessoas</span><span style="color: rgba(10,20,48,0.55);">✦</span></div>
       </div>
     </div>
     <div style="position: absolute; top: 52px; left: -8%; width: 116%; transform: rotate(2.4deg); background: var(--ink-3); border-top: 1px solid var(--line-d); border-bottom: 1px solid var(--line-d); overflow: hidden;">
       <div style="display: flex; width: max-content; animation: bmMarqueeR 40s linear infinite; will-change: transform;">
-        <div style="display: flex; align-items: center; gap: 34px; padding: 11px 17px; font-family: var(--disp); font-weight: 500; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-lite); white-space: nowrap;"><span>Antes, durante e depois</span><span style="color: var(--gold);">✦</span><span>Presença em cada etapa</span><span style="color: var(--gold);">✦</span><span>Proteção 360°</span><span style="color: var(--gold);">✦</span><span>Antes, durante e depois</span><span style="color: var(--gold);">✦</span><span>Presença em cada etapa</span><span style="color: var(--gold);">✦</span><span>Proteção 360°</span><span style="color: var(--gold);">✦</span></div>
+        <div class="marquee-row" style="display: flex; align-items: center; gap: 34px; padding: 11px 17px; font-family: var(--disp); font-weight: 500; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-lite); white-space: nowrap;"><span>Antes, durante e depois</span><span style="color: var(--gold);">✦</span><span>Presença em cada etapa</span><span style="color: var(--gold);">✦</span><span>Proteção 360°</span><span style="color: var(--gold);">✦</span><span>Antes, durante e depois</span><span style="color: var(--gold);">✦</span><span>Presença em cada etapa</span><span style="color: var(--gold);">✦</span><span>Proteção 360°</span><span style="color: var(--gold);">✦</span></div>
       </div>
     </div>
   </div>
@@ -229,21 +249,21 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 22px; max-width: 760px; margin: 0 auto;">
-      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0; background: linear-gradient(160deg, #1a3568 0%, #10204a 100%); border: 1px solid var(--line-d); border-radius: 22px; overflow: hidden; box-shadow: 0 20px 44px rgba(13,26,46,0.22);" class="bm-glow">
-        <img src="assets/aline.jpg" alt="Aline Ricarte" style="display:block; flex: 0 1 230px; min-width: 200px; align-self: center; height: 360px; width: 230px; object-fit: cover; object-position: 100% 22%;" />
-        <div style="flex: 0.85 1 130px; min-width: 120px; padding: 52px 30px;">
+      <div class="team-row bm-glow" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0; background: linear-gradient(160deg, #1a3568 0%, #10204a 100%); border: 1px solid var(--line-d); border-radius: 22px; overflow: hidden; box-shadow: 0 20px 44px rgba(13,26,46,0.22);">
+        <img src="assets/aline.jpg" alt="Aline Ricarte" class="team-photo" style="display:block; flex: 0 1 230px; min-width: 200px; align-self: center; height: 360px; width: 230px; object-fit: cover; object-position: 100% 22%;" />
+        <div class="team-text" style="flex: 0.85 1 130px; min-width: 120px; padding: 52px 30px;">
           <div style="font-family: var(--serif); font-weight: 500; font-size: clamp(23px, 2.3vw, 29px); color: #fff; letter-spacing: 0.3px;">Aline Ricarte</div>
           <div style="font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-lite); margin: 6px 0 18px;">Especialista em Benefícios</div>
           <p style="font-weight: 400; font-size: 15px; line-height: 1.58; color: rgba(244,237,224,0.72); margin: 0; text-align: justify;">Especialista em desenvolvimento de negócios e relacionamento comercial, é formada em Gestão de Recursos Humanos e soma mais de 4 anos de experiência em planos de saúde e seguros. Com atuação na liderança de equipes comerciais em diferentes regiões do Brasil, constrói relações de confiança duradouras.</p>
         </div>
       </div>
-      <div style="display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 0; background: linear-gradient(160deg, #1a3568 0%, #10204a 100%); border: 1px solid var(--line-d); border-radius: 22px; overflow: hidden; box-shadow: 0 20px 44px rgba(13,26,46,0.22);" class="bm-glow">
-        <div style="flex: 0.85 1 130px; min-width: 120px; padding: 52px 30px;">
+      <div class="team-row rev bm-glow" style="display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 0; background: linear-gradient(160deg, #1a3568 0%, #10204a 100%); border: 1px solid var(--line-d); border-radius: 22px; overflow: hidden; box-shadow: 0 20px 44px rgba(13,26,46,0.22);">
+        <div class="team-text" style="flex: 0.85 1 130px; min-width: 120px; padding: 52px 30px;">
           <div style="font-family: var(--serif); font-weight: 500; font-size: clamp(23px, 2.3vw, 29px); color: #fff; letter-spacing: 0.3px;">Sabrina Gonçalves</div>
           <div style="font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-lite); margin: 6px 0 18px;">Especialista em Benefícios</div>
           <p style="font-weight: 400; font-size: 15px; line-height: 1.58; color: rgba(244,237,224,0.72); margin: 0; text-align: justify;">Profissional multidisciplinar e fortemente orientada a resultados, com sólida experiência em saúde suplementar e seguros. Conduz diagnósticos, negociações estratégicas e estrutura soluções personalizadas com foco em eficiência real. Seu propósito é transformar o custo com seguros em benefícios genuínos.</p>
         </div>
-        <img src="assets/sabrina.jpg" alt="Sabrina Gonçalves" style="display:block; flex: 0 1 230px; min-width: 200px; margin-left: auto; align-self: center; height: 360px; width: 230px; object-fit: cover; object-position: 100% 22%;" />
+        <img src="assets/sabrina.jpg" alt="Sabrina Gonçalves" class="team-photo" style="display:block; flex: 0 1 230px; min-width: 200px; margin-left: auto; align-self: center; height: 360px; width: 230px; object-fit: cover; object-position: 100% 22%;" />
       </div>
     </div>
   </section>
@@ -314,7 +334,7 @@
       </div>
     </div>
 
-    <div style="position: relative; margin-top: clamp(34px, 4vw, 52px); padding-top: clamp(22px, 2.5vw, 30px); border-top: 1px solid var(--line-d); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;">
+    <div class="foot-bottom" style="position: relative; margin-top: clamp(34px, 4vw, 52px); padding-top: clamp(22px, 2.5vw, 30px); border-top: 1px solid var(--line-d); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;">
       <div style="font-weight: 300; font-size: 14px; color: rgba(244,237,224,0.45);">© 2025 Bem Melhor Seguros e Benefícios. Todos os direitos reservados.</div>
       <div style="font-weight: 300; font-size: 14px; color: rgba(244,237,224,0.45);">SUSEP 262180461</div>
     </div>
