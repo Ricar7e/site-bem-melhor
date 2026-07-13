@@ -62,7 +62,8 @@
 
     /* Hero — kill the desktop nudge, give room below the bar */
     .hero-left { transform: none !important; max-width: 100% !important; }
-    .hero-sect { min-height: 0 !important; padding: 128px 22px 68px !important; }
+    .hero-sect { min-height: 100vh !important; min-height: 100svh !important; align-items: flex-end !important; padding: 112px 22px 52px !important; }
+    .hero-scrim { background: linear-gradient(90deg, rgba(7,14,34,0.72) 0%, rgba(7,14,34,0.42) 60%, rgba(10,20,48,0.28) 100%), linear-gradient(0deg, rgba(6,12,30,0.96) 4%, rgba(6,12,30,0.62) 34%, transparent 62%) !important; }
     .hero-sect h1 { font-size: 40px !important; }
     .hero-cta { width: 100%; }
     .hero-cta > button, .hero-cta > a { flex: 1 1 auto; justify-content: center; }
@@ -130,7 +131,7 @@
       <img src="assets/hero-familia-rosa.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 28%; opacity: 0; animation: bmCarousel 49s infinite; animation-delay: -35s;">
       <img src="assets/hero-gestantes.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; opacity: 0; animation: bmCarousel 49s infinite; animation-delay: 0s;">
     </div>
-    <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(7,14,34,0.95) 0%, rgba(7,14,34,0.85) 44%, rgba(10,20,48,0.45) 100%);"></div>
+    <div class="hero-scrim" style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(7,14,34,0.95) 0%, rgba(7,14,34,0.85) 44%, rgba(10,20,48,0.45) 100%);"></div>
     <div style="position: absolute; inset: 0; z-index: 1; background: radial-gradient(70% 80% at 82% 30%, rgba(198,142,106,0.16), transparent 70%); pointer-events: none;"></div>
     <div style="position: relative; z-index: 2; width: 100%;">
 
