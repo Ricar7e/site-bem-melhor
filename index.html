@@ -50,10 +50,13 @@
   .bm-btn-glow { transition: box-shadow .3s ease, transform .3s ease, filter .3s ease; }
   .bm-btn-glow:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 0 28px rgba(198,142,106,0.6), 0 18px 44px rgba(198,142,106,0.5); }
 
+  @media (min-width: 761px) { .bm-mobile-menu { display: none !important; } }
+
   /* ── Mobile ── */
   @media (max-width: 760px) {
     #topo { flex-wrap: nowrap; padding: 8px 8px 8px 16px; gap: 10px; width: calc(100% - 20px); margin-top: 10px; }
-    #topo > nav { display: none; }
+    #topo > nav { display: none !important; }
+    #topo .bm-burger { display: inline-flex !important; }
     #topo img { height: 34px; }
     #topo .bm-btn-glow { font-size: 13px; padding: 6px 6px 6px 15px; }
 
@@ -98,8 +101,23 @@
       <a href="#servicos" style="font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.9); padding: 7px 13px; border-radius: 999px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Serviços</a>
       <a href="#contato" style="font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.9); padding: 7px 13px; border-radius: 999px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Contato</a>
     </nav>
-    <button class="bm-btn-glow" onClick="{{ openModal }}" style="cursor: pointer; font-family: var(--disp); display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: #fff; background: linear-gradient(150deg, #1a3568 0%, #10204a 100%); border: none; padding: 6px 6px 6px 18px; border-radius: 999px; box-shadow: 0 10px 26px rgba(10,20,48,0.34);" style-hover="filter: brightness(1.12);"><span class="bm-btn-label">Quero saber mais</span> <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--gold-lite); color: var(--ink); font-size: 15px;">↗</span></button>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button class="bm-burger" onClick="{{ toggleMenu }}" aria-label="Abrir menu" style="display: none; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.30); background: rgba(255,255,255,0.14); color: #fff; align-items: center; justify-content: center; flex: none; padding: 0;" style-hover="background: rgba(255,255,255,0.24);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+      <button class="bm-btn-glow" onClick="{{ openModal }}" style="cursor: pointer; font-family: var(--disp); display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: #fff; background: linear-gradient(150deg, #1a3568 0%, #10204a 100%); border: none; padding: 6px 6px 6px 18px; border-radius: 999px; box-shadow: 0 10px 26px rgba(10,20,48,0.34);" style-hover="filter: brightness(1.12);"><span class="bm-btn-label">Quero saber mais</span> <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--gold-lite); color: var(--ink); font-size: 15px;">↗</span></button>
+    </div>
   </div>
+
+  <!-- ═══════════ MENU MOBILE (ilha) ═══════════ -->
+  <sc-if value="{{ menuOpen }}">
+  <div class="bm-mobile-menu" style="position: absolute; top: 72px; left: 10px; right: 10px; z-index: 6; background: #c68e6a; border: 1px solid rgba(255,255,255,0.22); border-radius: 22px; box-shadow: 0 22px 50px rgba(0,0,0,0.4); padding: 8px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box; animation: bmPop .22s ease;">
+    <a href="#quem-somos" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Quem somos</a>
+    <a href="#diferenca" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Diferença</a>
+    <a href="#pilares" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Pilares</a>
+    <a href="#equipe" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Equipe</a>
+    <a href="#servicos" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Serviços</a>
+    <a href="#contato" onClick="{{ closeMenu }}" style="font-weight: 600; font-size: 16px; color: rgba(255,255,255,0.95); padding: 13px 16px; border-radius: 14px;" style-hover="background: rgba(255,255,255,0.16); color: #fff;">Contato</a>
+  </div>
+  </sc-if>
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero-sect" style="position: relative; overflow: hidden; background: #0a1836; min-height: 94vh; display: flex; align-items: center; padding: clamp(160px, 22vh, 240px) clamp(24px, 4vw, 60px) clamp(90px, 13vh, 150px);">
@@ -429,7 +447,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { open: false, sent: false };
+  state = { open: false, sent: false, menuOpen: false };
   componentDidMount() {
     const root = this.el || document;
     const spin = () => {
@@ -453,9 +471,12 @@ class Component extends DCLogic {
     return {
       open: this.state.open,
       sent: this.state.sent,
+      menuOpen: this.state.menuOpen,
       showForm: this.state.open && !this.state.sent,
-      openModal: () => this.setState({ open: true, sent: false }),
+      openModal: () => this.setState({ open: true, sent: false, menuOpen: false }),
       closeModal: () => this.setState({ open: false }),
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
       submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
       stop: (e) => e.stopPropagation()
     };
